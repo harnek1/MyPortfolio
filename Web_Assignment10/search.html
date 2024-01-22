@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+  <link rel="stylesheet" type="text/css" href="responsive.css" />
+
+  <title>Search Page</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">Hamilton Homes</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="search">Search</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="map.html">Map</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="calculator.html">Calculator</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#Realtors">Realtors</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#Login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <form>
+      <button type="button" id="all" class="btn btn-primary">All</button>
+
+      <button type="button" id="ancaster" class="btn btn-primary">
+        Ancaster
+      </button>
+
+      <button type="button" id="dundas" class="btn btn-primary">
+        Dundas
+      </button>
+
+      <button type="button" id="mountain" class="btn btn-primary">
+        Mountain
+      </button>
+
+      <button type="button" id="stoney_Creek" class="btn btn-primary">
+        Stoney Creek
+      </button>
+
+      <button type="button" id="waterdown" class="btn btn-primary">
+        Waterdown
+      </button>
+
+      <br />
+      <br />
+
+      <select class="form-select" id="select_Bedroom" aria-label="Bedrooms select">
+        <option selected>Number of Bedrooms</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
+
+      <button type="button" id="filter_Bedroom" class="btn btn-primary">
+        Filter By Bedroom
+      </button>
+
+      <select class="form-select" id="select_Bathroom" aria-label="Bathrooms select">
+        <option selected>Number of Bathrooms</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
+
+      <button type="button" id="filter_Bathroom" class="btn btn-primary">
+        Filter By Bathroom
+      </button>
+
+      <br />
+      <br />
+
+      <label for="min">Min price:</label>
+      <input id="min" type="text" />
+
+      <label for="max">Max price:</label>
+      <input id="max" type="text" />
+
+      <button type="button" id="filter_Price" class="btn btn-primary">
+        Filter By Price
+      </button>
+
+    </form>
+  </div>
+
+  <br />
+
+  <h1>Search Page</h1>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">Postal Code</th>
+        <th scope="col">Community</th>
+        <th scope="col">Province</th>
+        <th scope="col">Price</th>
+        <th scope="col">Bedrooms</th>
+        <th scope="col">Bathrooms</th>
+        <th scope="col">Image</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody id="body_Output"></tbody>
+  </table>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script src="search.js"></script>
+</body>
+
+</html>
