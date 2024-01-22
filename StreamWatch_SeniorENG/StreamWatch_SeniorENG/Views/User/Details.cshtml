@@ -1,0 +1,177 @@
+﻿@model StreamWatch_SeniorENG.Models.TitleDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of @Html.DisplayFor(model => model.Title)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Poster)
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Poster)" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Original_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Original_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plot_overview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plot_overview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tmdb_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tmdb_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Runtime_minutes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Runtime_minutes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.End_year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.End_year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Release_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Release_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre_names)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre_names)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Critic_score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Critic_score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Us_rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Us_rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Original_language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Original_language)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Network_names)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Network_names)
+        </dd>
+
+    </dl>
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr class="table-dark" style="border-top: 1px solid grey; border-bottom: 1px solid grey;">
+                <th>Name</th>
+                <th>Type</th>
+                <th>Region</th>
+                <th>Format</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Sources)
+        {
+                <tr class="table-dark">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Format)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "List", "User", null, new { @class = "btn btn-secondary" })
+
+</div>
+

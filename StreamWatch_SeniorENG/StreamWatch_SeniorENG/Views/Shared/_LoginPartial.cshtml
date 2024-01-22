@@ -1,0 +1,41 @@
+﻿<ul class="navbar-nav">
+    @if (Context.Session.GetInt32("UserId") != null)
+    {
+        <li class="nav-item mt-3 mx-lg-2">
+            <p class="text-light">Hello @Context.Session.GetString("UserEmail")!</p></li>
+
+        <li class="nav-item mt-3 mx-sm-0">
+            <div id="triggerNotificationButton" class="notification-icon">
+                <i class='fa-solid fa-bell'></i>
+                <span id="notificationCount">0</span>
+                <div id="notifications">
+                    <ul id="notificationList" role="menu"></ul>
+                </div>
+            </div>
+           
+
+        </li>
+        <li class="nav-item mt-3 mx-lg-2">
+
+            <a class="btn btn-secondary" href="/AccountSettings/Index" title="Manage">Manage</a>
+            @*<a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @Context.Session.GetString("UserEmail")!</a>*@
+        </li>
+
+        <li class="nav-item mt-3">
+            <a href="/User/Logout" class="btn btn-secondary">Logout</a>
+           @*<a class="nav-link text-dark" href="/User/Logout">Logout</a>*@
+        </li>
+    }
+    else
+    {
+        <li class="nav-item mx-lg-2 mb-sm-2 mt-1 mb-2">
+            <a href="/Signup/Signup" class="btn btn-secondary">Register</a>
+           
+            @*<a class="nav-link text-white" href="/Signup/Signup">Register</a>*@
+        </li>
+        <li class="nav-item mx-lg-2 mt-1">
+            <a href="/Login/Login" class="btn btn-secondary">Login</a>
+            @*<a class="nav-link text-dark" href="/Login/Login">Login</a>*@
+        </li>
+    }
+</ul>

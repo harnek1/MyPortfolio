@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="~/css/Calendar.css" />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.3/luxon.min.js" integrity="sha512-gUQcFuEaDuAEqvxIQ9GDdMcCeFmG5MPnoc6ruJn+nyCNHrHM2oB97GOVLIOiixzTxPYmIfEQbOoQmx55UscLyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+
+    <script src="~/js/Calendar.js" asp-append-version="true"></script>
+
+</head>
+<body>
+    <div class="modal container-fluid" id="modal" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div class="modal-dialog modal-dialog-centered modal-sm modal-md modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Modal title</h5>
+                 
+                </div>
+                <div class="modal-body" id="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeButton" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id='calendar'></div>
+</body>
+</html>
+
