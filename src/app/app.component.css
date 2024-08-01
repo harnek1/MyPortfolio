@@ -1,0 +1,19 @@
+h1
+{
+    text-align: center;
+}
+
+
+input, button
+{ 
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 4%;
+    text-align: center;
+  
+}
+
+.form-switch
+{
+    padding-left: 50%;
+}
