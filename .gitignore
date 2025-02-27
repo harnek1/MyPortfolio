@@ -36,7 +36,15 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+environment.development.ts
+environment.ts
+.env
 
 # System files
 .DS_Store
 Thumbs.db
+
+
+
+.nx/cache
+.nx/workspace-data

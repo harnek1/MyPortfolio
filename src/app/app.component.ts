@@ -1,22 +1,19 @@
-import { NgIf } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import 'bootstrap/dist/css/bootstrap.css';
+import {env} from '../environments/environment.development'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, FormsModule, NgIf],
+  imports: [CommonModule, RouterOutlet, FormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'WeatherApp';
-  httpClient = inject(HttpClient)
-  showFirstButton: boolean = true
-  showSecondButton: boolean = true
   showFirstContent: boolean = false
   showSecondContent: boolean = false
   cityName: string = ""
@@ -34,7 +31,12 @@ export class AppComponent implements OnInit {
   description: string = ""
   sunrise: string = ""
   sunset: string = ""
+  errorMessage: any = ""
+  successMessage : any = ""
 
+  apiKey = env.apiKey || process.env['apiKey']
+
+  constructor(private http:HttpClient){}
   ngOnInit(): void {
   }
 
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   showContent(content: string) {
+    console.log("content",content)
     this.cityName = ""
     this.countryCode = ""
     this.latitude = 0
@@ -66,40 +69,99 @@ export class AppComponent implements OnInit {
     this.sunset = ""
 
     if (content === 'first') {
-      this.showSecondContent = false;
       this.showFirstContent = true;
+      this.showSecondContent = false;
     } else if (content === 'second') {
       this.showFirstContent = false;
       this.showSecondContent = true;
     }
   }
+
+  showError(message: string) {
+    this.errorMessage = message;
+
+    // Hide the alert after 2 seconds
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 2000);
+  }
+
+  showSuccess(message: string) {
+    this.successMessage = message;
+
+    // Hide the alert after 2 seconds
+    setTimeout(() => {
+      this.successMessage = null;
+    }, 2000);
+  }
+
   fetchCityData(city: any, countryCode: any)
   {
-    this.httpClient
-    .get('https://api.openweathermap.org/data/2.5/weather?'+'q='+city+","+countryCode+'&units=metric&appid=d407554f1a3fb85ef766edbea45fbe83')
-    .subscribe((data: any) => {
-        this.data = data
-        this.name = this.data.name
-        this.temp = this.data["main"].temp
-        this.feels_like = this.data["main"].feels_like
-        this.temp_min = this.data["main"].temp_min
-        this.temp_max = this.data["main"].temp_max
-        this.humidity = this.data["main"].humidity
-        this.main = this.data["weather"][0].main
-        this.description = this.data["weather"][0].description
+
+    if(city.length < 1)
+      {
+        this.showError('City field is empty. Please check your input and try again.');
+      }
+    else if(countryCode < 1)
+      {
+        this.showError('Country code field is empty. Please check your input and try again.');
+      }  
+    else
+    {
+      this.http
+      .get('https://api.openweathermap.org/data/2.5/weather?'+'q='+city+","+countryCode+'&units=metric&appid='+this.apiKey)
+      .subscribe({
+      next: (data: any) => {
+        this.data = data;
+        this.name = this.data.name;
+        this.temp = this.data["main"].temp;
+        this.feels_like = this.data["main"].feels_like;
+        this.temp_min = this.data["main"].temp_min;
+        this.temp_max = this.data["main"].temp_max;
+        this.humidity = this.data["main"].humidity;
+        this.main = this.data["weather"][0].main;
+        this.description = this.data["weather"][0].description;
+
         let convSunriseTime = new Date(this.data["sys"].sunrise * 1000);
         let convSunsetTime = new Date(this.data["sys"].sunset * 1000);
-        this.sunrise = convSunriseTime.toLocaleTimeString("en-US")
-        this.sunset = convSunsetTime.toLocaleTimeString("en-US")
+        this.sunrise = convSunriseTime.toLocaleTimeString("en-US");
+        this.sunset = convSunsetTime.toLocaleTimeString("en-US");
+      },
+      error: (error) => {
+  
+        if (error.status === 404) {
+          this.showError('Failed to get weather data. Please check your inputs and try again.');
+        } else {
+          this.showError('An error occurred while fetching the data. Please try again later.');
+        }
+
+        this.latitude = 0
+        this.longitude = 0
+
+        this.name = ""
+        this.temp = 0
+        this.feels_like = 0
+        this.temp_min = 0
+        this.temp_max = 0
+        this.humidity = ""
+        this.main = ""
+        this.description = ""
+        this.sunrise = ""
+        this.sunset = ""
+      },
+      complete: () => {
+        this.showSuccess('Weather Data fetching complete.');
       }
-    )
-  }
+      })
+    }
+}
 
   fetchLatLonData(lat: any, long: any)
   {
-    this.httpClient
-    .get('https://api.openweathermap.org/data/2.5/weather?'+'lat='+lat+'&lon='+long+'&units=metric&appid=d407554f1a3fb85ef766edbea45fbe83')
-    .subscribe((data: any) => {
+    this.http
+    .get('https://api.openweathermap.org/data/2.5/weather?'+'lat='+lat+'&lon='+long+'&units=metric&appid='+this.apiKey)
+    .subscribe({
+      next: (data: any) => {
         this.data = data
         this.name = this.data.name
         this.temp = this.data["main"].temp
@@ -113,7 +175,33 @@ export class AppComponent implements OnInit {
         let convSunsetTime = new Date(this.data["sys"].sunset * 1000);
         this.sunrise = convSunriseTime.toLocaleTimeString("en-US")
         this.sunset = convSunsetTime.toLocaleTimeString("en-US")
+      },
+      error: (error) => {
+  
+        if (error.status === 404) {
+          this.showError('Failed to get weather data. Please check your inputs and try again.');
+        } else {
+          this.showError('An error occurred while fetching the data. Please try again later.');
+        }
+
+        this.latitude = 0
+        this.longitude = 0
+
+        this.name = ""
+        this.temp = 0
+        this.feels_like = 0
+        this.temp_min = 0
+        this.temp_max = 0
+        this.humidity = ""
+        this.main = ""
+        this.description = ""
+        this.sunrise = ""
+        this.sunset = ""
+      },
+      complete: () => {
+        this.showSuccess('Weather Data fetching complete.');
       }
-    )
+    })
   }
 }
+
