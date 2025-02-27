@@ -1,0 +1,26 @@
+﻿@model StreamWatch_SeniorENG.Databases.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h2>Are you sure you want to delete your account @Html.DisplayTextFor(User => User.Email)?</h2>
+<div>
+    <hr />
+
+     <p> If yes please click on the Delete button but if you do not want to delete your account then click on the Home button.</p>
+
+
+    @using (Html.BeginForm("DeleteUserConfirmed", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <a asp-controller="User" asp-action="Index" class="btn btn-primary">Home Page</a>
+
+        <br/>
+        <br />
+
+        <button type="submit" value="Delete" class="btn btn-danger">Delete Account</button>
+    }
+</div>

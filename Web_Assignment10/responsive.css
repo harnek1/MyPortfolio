@@ -1,0 +1,38 @@
+body{
+    background-color: lightgreen;
+    
+}
+
+img{
+    height: 85%;
+    width: 100%;
+}
+
+.container-fluid{
+    display:flex;
+}
+
+form, div{
+    align-self: center;
+    margin: 0 auto;
+}
+
+h1, p{
+    text-align: center;
+}
+
+#map {
+    height: 510px;
+    width:  1000px
+  
+}
+
+#select_Bedroom{
+    display: inline;
+    width: auto;
+}
+
+#select_Bathroom{
+    display: inline;
+    width: auto;
+}

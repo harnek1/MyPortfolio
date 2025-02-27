@@ -1,0 +1,41 @@
+﻿@model StreamWatch_SeniorENG.Databases.Search
+@{
+    ViewBag.Title = "Search";
+
+}
+
+
+<link rel="stylesheet" href="~/css/Search.css" />
+<!-- Include jQuery.js with cache-busting -->
+<script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+<!-- Include Search.js with cache-busting -->
+<script src="~/js/Search.js" asp-append-version="true"></script>
+
+<div class="container-fluid">
+<h2>Search</h2>
+
+    <div class="row">
+        <div>
+            <input type="text" class="form-control mb-3" placeholder="Search" aria-label="Search" id="search">
+            <button type="submit" onclick="search()" class=" btn btn-info" id="searchButton">Search</button>
+        </div>
+
+        
+    </div>
+
+ <div id="alert"></div>
+
+<table class="table" id="tab">
+    <thead>
+        <tr style="border-bottom: 1px solid grey;">
+                <th scope="col" class="h6">Image</th>
+                <th scope="col" class="h6">Name</th>
+                <th scope="col" class="h6">Year</th>
+                <th scope="col" class="h6">Type of Content</th>
+                <th scope="col" class="h6">Add To Favourites</th>
+        </tr>
+    </thead>
+    <tbody id="body_Output"></tbody>
+</table>
+</div>
+

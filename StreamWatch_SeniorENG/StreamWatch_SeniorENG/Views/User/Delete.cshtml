@@ -1,0 +1,68 @@
+﻿@model StreamWatch_SeniorENG.Databases.Search
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h2>Are you sure you want to delete @Html.DisplayFor(model => model.Name)?</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @if (Html.DisplayFor(model => model.Image).ToString() != "No image" && Html.DisplayFor(model => model.Image).ToString() != "NULL")
+            {
+                <img src="@Html.DisplayFor(model => model.Image)" style="height:20%; width:20%" />
+            }
+            else
+            {
+                <p>No image</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @if (Html.DisplayFor(model => model.Year).ToString() != "0" && Html.DisplayFor(model => model.Year).ToString() != "No data " && Html.DisplayFor(model => model.Year).ToString() != "NULL")
+            {
+                @Html.DisplayFor(model => model.Year)
+            }
+            else
+            {
+                <p>No Data</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfContent)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Back to List", "List") |  <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+</div>

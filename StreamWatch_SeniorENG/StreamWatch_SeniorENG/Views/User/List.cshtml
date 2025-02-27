@@ -1,0 +1,63 @@
+﻿@model IEnumerable<StreamWatch_SeniorENG.Databases.Search>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>My Favourites List</h2>
+
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr style="border-top: 1px solid grey; border-bottom: 1px solid grey;">
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfContent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-dark">
+                <td>
+                    @if (item.Image == "No image")
+                    {
+                        <p>No image</p>
+
+                    }
+                    else
+                    {
+                        <img src="@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" alt="No Image" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfContent)
+                </td>
+           
+                <td>
+                    
+                      
+                        @Html.ActionLink("Details", "Details","User",new { id = item.ID }, new { @class = "btn btn-info mb-xl-0", style="margin-right: 2%; margin-bottom: 5%" })
+                 
+                    @Html.ActionLink("Unfavourite","Delete", "User", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
