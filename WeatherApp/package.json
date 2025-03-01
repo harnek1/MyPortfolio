@@ -7,7 +7,8 @@
     "build": "nx build",
     "watch": "nx build --watch --configuration development",
     "test": "nx test",
-    "serve:ssr:WeatherApp": "node dist/weather-app/server/server.mjs"
+    "serve:ssr:WeatherApp": "node dist/weather-app/server/server.mjs",
+    "postinstall": "node scripts/set-environment.js"
   },
   "private": true,
   "dependencies": {
