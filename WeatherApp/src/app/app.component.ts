@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import {env} from '../environments/environment'
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
   errorMessage: any = ""
   successMessage : any = ""
 
-  apiKey = process.env['apiKey']
+  apiKey = env.API_KEY
 
   constructor(private http:HttpClient){}
   ngOnInit(): void {
