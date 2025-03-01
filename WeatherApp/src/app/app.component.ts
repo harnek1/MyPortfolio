@@ -51,7 +51,6 @@ export class AppComponent implements OnInit {
   }
 
   showContent(content: string) {
-    console.log("content",content)
     this.cityName = ""
     this.countryCode = ""
     this.latitude = 0

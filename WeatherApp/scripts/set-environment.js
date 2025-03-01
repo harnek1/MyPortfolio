@@ -16,5 +16,3 @@ if (!fs.existsSync(envDir)) {
 // Write the environment files
 fs.writeFileSync(`${envDir}/environment.ts`, envContent);
 fs.writeFileSync(`${envDir}/environment.prod.ts`, prodEnvContent);
-
-console.log('✅ Environment files generated successfully!');
