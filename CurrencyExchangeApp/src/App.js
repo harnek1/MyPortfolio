@@ -190,7 +190,6 @@ function App() {
   setNextUpdateUtc("");
 };
 
-
 var handleSelectChange2 = (event) => {
   setToCur(event.target.value);
   setConversionRate(0.0);
