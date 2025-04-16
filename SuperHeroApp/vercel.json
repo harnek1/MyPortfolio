@@ -2,7 +2,7 @@
     "version": 2,
     "functions": {
       "api/[id].js": {
-        "runtime": "nodejs20.x"
+        "runtime": "nodejs23.11.0"
       }
     },
     "routes": [
