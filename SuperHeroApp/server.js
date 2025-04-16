@@ -22,7 +22,7 @@ app.get("/api/superhero", async (req, res) => {
 
 app.get("/api/superhero/:id", async (req, res) => {
     const { id } = req.params;
-    const API_KEY = process.env.SUPERHERO_API_KEY || "626b52936435f1374d6a2ae666931630";
+    const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
   
     try {
       const response = await fetch(`https://superheroapi.com/api/${API_KEY}/${id}`);
