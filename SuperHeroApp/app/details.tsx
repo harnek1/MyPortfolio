@@ -37,10 +37,12 @@ interface Character {
   connections: { "group-affiliation": string; relatives: string };
 }
 
-const searchHero = async (query:any) => {
+const searchHero = async (id:any) => {
   try {
-    const res = await fetch(`/api/superhero?q=${encodeURIComponent(query)}`);
+    console.log("id",id)
+    const res = await fetch(`/api/superhero/${id}`);
     const data = await res.json();
+    console.log("data",data)
     return data;
   } catch (err) {
     console.error("API error:", err);
@@ -48,13 +50,15 @@ const searchHero = async (query:any) => {
   }
 };
 
-export default async function Detailsscreen() {
+export default function Detailsscreen() {
 
  const params= useLocalSearchParams()
  const navigation = useNavigation()
 
   const [character, setCharacter] = useState<Character | null>(null);
   const API_KEY = process.env.EXPO_PUBLIC_API_KEY
+
+
   const sections = [
     {
       title: 'Powerstats',
@@ -110,12 +114,23 @@ export default async function Detailsscreen() {
     }
   }, [character, navigation]);
  
+  const getSearchResults = async () => {
+    console.log("Hello")
     const results = await searchHero(params.id);
+    console.log("dresults",results)
     setCharacter(results)
+  }
+
+  useEffect(() => {
+    if (params.id) {
+      getSearchResults();
+    }
+  }, [params.id]);
 
   if (!character) {
     return <Text>Loading...</Text>;
   }
+
 
   return (
     <ScrollView contentContainerStyle={{

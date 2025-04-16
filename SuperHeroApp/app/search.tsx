@@ -64,10 +64,10 @@ interface Character {
     setError('');
     try {
       if(text.length > 1) {
-        const results =await searchHero(text);
+        const results = await searchHero(text);
       if (isMounted) 
       {
-        setData(results);
+        setData(results?.results);
         if (check) 
         {
 

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const apiKey = process.env.EXPO_PUBLIC_API_KEY;
   
     try {
-      const response = await fetch(`https://www.superheroapi.com/api.php/${apiKey}/search/${encodeURIComponent(q)}`);
+      const response = await fetch(`/api/${apiKey}/search/${encodeURIComponent(q)}`);
   
       if (!response.ok) {
         throw new Error("Failed to fetch from Superhero API");
