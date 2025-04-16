@@ -56,13 +56,10 @@ interface Character {
     try {
       if(text.length > 1) {
       const response = await fetch(`https://superheroapi.com/api/${API_KEY}/search/${text}`, { signal: controller.current?.signal });
-      console.log("response",response)
       const json = await response.json();
-      console.log("json",json)
       if (isMounted) 
       {
         setData(json.results);
-        console.log("Data",data)
         if (check) 
         {
 
