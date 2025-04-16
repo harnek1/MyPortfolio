@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, TextInput, Button, FlatList, Text, Image, TouchableOpacity, ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 
-
 interface Character {
     id: string;
     name: string;
@@ -45,7 +44,7 @@ interface Character {
   const [data, setData] = useState<Character[]>([]);
   const [check_Error, setError] = useState('');
   const [check, setCheck] = useState(false);
-  const API_KEY = process.env.API_KEY
+  const API_KEY = process.env.EXPO_PUBLIC_API_KEY
   
   const controller = useRef<AbortController | null>(null);
   controller.current = new AbortController();
