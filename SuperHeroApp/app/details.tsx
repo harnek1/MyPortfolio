@@ -37,14 +37,24 @@ interface Character {
   connections: { "group-affiliation": string; relatives: string };
 }
 
+const searchHero = async (query:any) => {
+  try {
+    const res = await fetch(`/api/superhero?q=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("API error:", err);
+    return null;
+  }
+};
 
-export default function Detailsscreen() {
+export default async function Detailsscreen() {
 
  const params= useLocalSearchParams()
  const navigation = useNavigation()
 
   const [character, setCharacter] = useState<Character | null>(null);
-
+  const API_KEY = process.env.EXPO_PUBLIC_API_KEY
   const sections = [
     {
       title: 'Powerstats',
@@ -99,16 +109,9 @@ export default function Detailsscreen() {
       navigation.setOptions({ title: "Details of the: "+character.name });
     }
   }, [character, navigation]);
-  useEffect(() => {
-    if (params) {
-      fetch(`https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/626b52936435f1374d6a2ae666931630/${params.id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setCharacter(data);
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [params]);
+ 
+    const results = await searchHero(params.id);
+    setCharacter(results)
 
   if (!character) {
     return <Text>Loading...</Text>;

@@ -35,7 +35,16 @@ interface Character {
     connections: { "group-affiliation": string; relatives: string };
   }
   
-
+  const searchHero = async (query:any) => {
+    try {
+      const res = await fetch(`/api/superhero?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.error("API error:", err);
+      return null;
+    }
+  };
 
   export default function Searchscreen() {
   const router = useRouter();
@@ -55,11 +64,10 @@ interface Character {
     setError('');
     try {
       if(text.length > 1) {
-      const response = await fetch(`https://superheroapi.com/api/${API_KEY}/search/${text}`, { signal: controller.current?.signal });
-      const json = await response.json();
+        const results =await searchHero(text);
       if (isMounted) 
       {
-        setData(json.results);
+        setData(results);
         if (check) 
         {
 
@@ -68,13 +76,13 @@ interface Character {
 
             setError("Please enter at least one character.")
 
-          } else if (text.length > 0 && json.response === "error") 
+          } else if (text.length > 0 && results.response === "error") 
           {
 
             setError("Cannot find character")
           }
 
-          if (text.length > 0 && json.response === "success") 
+          if (text.length > 0 && results.response === "success") 
           {
             setError("")
           }
