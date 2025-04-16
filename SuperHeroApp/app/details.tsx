@@ -39,10 +39,8 @@ interface Character {
 
 const searchHero = async (id:any) => {
   try {
-    console.log("id",id)
-    const res = await fetch(`/api/superhero/${id}`);
+    const res = await fetch(`/api/${id}`);
     const data = await res.json();
-    console.log("data",data)
     return data;
   } catch (err) {
     console.error("API error:", err);
@@ -115,9 +113,7 @@ export default function Detailsscreen() {
   }, [character, navigation]);
  
   const getSearchResults = async () => {
-    console.log("Hello")
     const results = await searchHero(params.id);
-    console.log("dresults",results)
     setCharacter(results)
   }
 
