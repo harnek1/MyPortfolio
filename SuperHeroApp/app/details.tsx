@@ -39,7 +39,7 @@ interface Character {
 
 const searchHero = async (id:any) => {
   try {
-    const res = await fetch(`/api/${id}`);
+    const res = await fetch(`/api/[id]?q=${encodeURIComponent(id)}`);
     const data = await res.json();
     return data;
   } catch (err) {
