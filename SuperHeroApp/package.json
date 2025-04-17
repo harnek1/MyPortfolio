@@ -9,7 +9,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build": "expo export:web",
+    "build": "expo export:web && node fix-favicon-path.js",
     "lint": "expo lint"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "expo-system-ui": "~4.0.9",
     "expo-web-browser": "~14.0.2",
     "express": "^5.1.0",
+    "fs": "^0.0.1-security",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "^0.76.9",
