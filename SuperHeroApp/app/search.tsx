@@ -53,7 +53,6 @@ interface Character {
   const [data, setData] = useState<Character[]>([]);
   const [check_Error, setError] = useState('');
   const [check, setCheck] = useState(false);
-  const API_KEY = process.env.EXPO_PUBLIC_API_KEY
   
   const controller = useRef<AbortController | null>(null);
   controller.current = new AbortController();

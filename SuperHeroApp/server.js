@@ -20,7 +20,7 @@ app.get("/api/superhero", async (req, res) => {
   }
 });
 
-app.get("/api/superhero/:id", async (req, res) => {
+app.get("/api/:id", async (req, res) => {
     const { id } = req.params;
     const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
   

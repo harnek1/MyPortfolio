@@ -1,6 +1,5 @@
-import { router, useNavigation, useRouter } from 'expo-router';
-import { navigate } from 'expo-router/build/global-state/routing';
-import { useLocalSearchParams, useSearchParams } from 'expo-router/build/hooks';
+import { useNavigation } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router/build/hooks';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 
@@ -54,7 +53,6 @@ export default function Detailsscreen() {
  const navigation = useNavigation()
 
   const [character, setCharacter] = useState<Character | null>(null);
-  const API_KEY = process.env.EXPO_PUBLIC_API_KEY
 
 
   const sections = [
