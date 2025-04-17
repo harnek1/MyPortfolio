@@ -2,13 +2,13 @@ export default async function handler(req, res) {
     const { id } = req.params;
   
     if (!id) {
-      return res.status(400).json({ error: "Missing search query `q`" });
+      return res.status(400).json({ error: "Missing search query `id`" });
     }
   
     const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
   
     try {
-      const response = await fetch(`https://superheroapi.com/api/${API_KEY}/${id}`);
+      const response = await fetch(`https://superheroapi.com/api/${API_KEY}/${encodeURIComponent(id)}`);
   
       if (!response.ok) {
         throw new Error("Failed to fetch from Superhero API");
