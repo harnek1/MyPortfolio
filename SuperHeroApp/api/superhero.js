@@ -5,7 +5,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Missing search query `q`" });
     }
   
-    const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
+    const API_KEY = process.env.API_KEY;
   
     try {
       const response = await fetch(`https://superheroapi.com/api/${API_KEY}/search/${encodeURIComponent(q)}`);
