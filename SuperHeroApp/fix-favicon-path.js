@@ -7,4 +7,3 @@ let html = fs.readFileSync(path, 'utf8');
 html = html.replace(/href="\/favicon\.ico"/g, 'href="./favicon.ico"');
 
 fs.writeFileSync(path, html);
-console.log('✅ Fixed favicon path to be relative.');
